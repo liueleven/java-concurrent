@@ -17,8 +17,6 @@ public class MyPoolTest {
 
     static class Sms implements Runnable {
 
-
-
         private int num;
 
         @Override

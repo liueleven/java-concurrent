@@ -1,8 +1,9 @@
 package cn.eleven.concurrent.usage.semaphore;
 
 import cn.eleven.concurrent.usage.pool.MyPool;
+import cn.eleven.concurrent.usage.pool.MyThreadFactory;
 
-import java.util.concurrent.Semaphore;
+import java.util.concurrent.*;
 
 /**
  * @description: 一定要写注释啊
@@ -10,6 +11,11 @@ import java.util.concurrent.Semaphore;
  * @author: 十一
  */
 public class SemaphoreDemo {
+
+    private static ExecutorService pool = new ThreadPoolExecutor(10, 10,
+            0L, TimeUnit.MILLISECONDS,
+            new LinkedBlockingQueue<Runnable>(),
+            new MyThreadFactory("my-test"));
 
     public static void main(String[] args) {
 
@@ -33,12 +39,10 @@ public class SemaphoreDemo {
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     }
-
-
                 }
             };
             // 放到线程池中执行,可以改变线程池的core数，观察结果
-            MyPool.getInstance().execute(runnable);
+            pool.execute(runnable);
         }
     }
 }

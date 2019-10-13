@@ -1,6 +1,7 @@
 package cn.eleven.concurrent.usage.lock;
 
 
+import java.util.concurrent.TimeUnit;
 import java.util.concurrent.locks.ReentrantLock;
 
 /**
@@ -18,7 +19,7 @@ public class ReentrantLockDemo implements Runnable{
 
     @Override
     public void run() {
-        for (int i=0; i<10; i++) {
+        for (int i=0; i<2; i++) {
             try {
                 // 先获取锁
                 lock.lock();
@@ -34,14 +35,16 @@ public class ReentrantLockDemo implements Runnable{
         }
 
     }
-
     public static void main(String[] args) {
+
         ReentrantLockDemo rntrt = new ReentrantLockDemo();
         Thread t1 = new Thread(rntrt,"T1");
         Thread t2 = new Thread(rntrt,"T2");
         // 打印结果，交替获取锁
         t1.start();
         t2.start();
+
+//        rntrt.lock.tryLock(10, TimeUnit.SECONDS) 可以等
 
 
     }

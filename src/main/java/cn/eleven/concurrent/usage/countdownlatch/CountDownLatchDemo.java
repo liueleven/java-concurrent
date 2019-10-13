@@ -25,7 +25,6 @@ public class CountDownLatchDemo {
 
         new Thread(new Task(countDownLatch),"Thread3").start();
 
-
         countDownLatch.await();
         System.out.println("所有线程已经到达，主线程开始执行 " + System.currentTimeMillis());
 
@@ -37,7 +36,6 @@ public class CountDownLatchDemo {
         public Task(CountDownLatch countDownLatch) {
             this.countDownLatch = countDownLatch;
         }
-
         @Override
         public void run() {
             System.out.println("线程" + Thread.currentThread().getName() + " 已到达 " + System.currentTimeMillis());

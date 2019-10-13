@@ -29,8 +29,6 @@ public class CyclicBarrierDemo {
             }
         });
 
-
-
         new Thread(new Task(cyclicBarrier), "Thread1").start();
         new Thread(new Task(cyclicBarrier), "Thread2").start();
         new Thread(new Task(cyclicBarrier), "Thread3").start();
